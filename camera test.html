@@ -19,20 +19,21 @@
 
         function setup() {
             createCanvas(800, 400);
-            background(0);
+            
             let hw = 25;
-            for (let i = 0; i < 1600; i = i + hw) {
-                for (let j = 0; j < 800; j = j + hw) {
-                    squares.push(new Square(i, j, hw))
+            for (let i = 0; i < 800; i = i + hw) {
+                for (let j = 0; j < 400; j = j + hw) {
+                    squares.push(new Square(i, j, hw));
                 }
             }
             player = createSprite(px, py, 50, 100);
 
-            
+          
         }
 
         function draw() {
-            
+            background(180);
+           
             camera.position.x = player.position.x;
             camera.position.y = player.position.y;
             player.position.x = px;
@@ -43,9 +44,7 @@
             } else {
                 camera.zoom = 1;
             }
-
-            
-            
+           
 
             for (let i = 0; i < squares.length; i++) {
                 squares[i].showA();
@@ -55,13 +54,15 @@
                     squares[i].showB();
                 }
             }
+            
+
 
             noStroke();
             fill(0, 0, 0, 20);
             ellipse(player.position.x, player.position.y + 90, 80, 30);
-          
             drawSprite(player);
-          
+            
+           
             controls();
             camera.on();
             
