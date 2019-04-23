@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+    <script src="p5.play.js"></script>
+</head>
+<body>
+    <script>
+        "use strict";
+        var player;
+        var SCENE_W = 1600;
+        var SCENE_H = 800;
+
+        function setup() {
+            createCanvas(800, 400);
+            player = createSprite(400, 200, 50, 100);
+        }
+
+        function draw() {
+            background(200, 180, 20);
+
+            player.velocity.x = (camera.mouseX - player.position.x) / 20;
+            player.velocity.y = (camera.mouseY - player.position.y) / 20;
+
+            if (mouseIsPressed) {
+                camera.zoom = 0.5;
+            } else {
+                camera.zoom = 1;
+            }
+
+            camera.position.x = player.position.x;
+            camera.position.y = player.position.y;
+
+            if (player.position.x < 0)
+                player.position.x = 0;
+            if (player.position.y < 0)
+                player.position.y = 0;
+            if (player.position.x > SCENE_W)
+                player.position.x = SCENE_W;
+            if (player.position.y > SCENE_H)
+                player.position.y = SCENE_H;
+
+
+            noStroke();
+            fill(0, 0, 0, 20);
+            ellipse(player.position.x, player.position.y + 90, 80, 30);
+
+            drawSprite(player);
+            camera.off();
+
+        }
+    </script>
+</body>
+</html>
